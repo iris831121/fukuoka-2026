@@ -114,6 +114,29 @@ body {
 .info-row:last-child { margin-bottom:0; }
 .info-icon { font-size:17px; flex-shrink:0; margin-top:1px; }
 
+
+.map-link {
+  display: inline-flex; align-items: center; gap: 3px;
+  font-size: 10px; color: #4A90D9; font-weight: 700;
+  text-decoration: none; margin-top: 3px;
+  background: #EEF5FF; border-radius: 8px; padding: 2px 7px;
+  border: 1px solid #C5DBF5;
+  white-space: nowrap;
+}
+.map-link:hover { background: #D8ECFF; }
+
+
+.map-btn {
+  display: inline-flex;
+  align-items: center;
+  font-size: 17px;
+  text-decoration: none;
+  margin-left: 5px;
+  opacity: 0.85;
+  vertical-align: middle;
+}
+.map-btn:hover { opacity: 1; transform: scale(1.15); }
+
 .footer { text-align:center; padding:14px 0 0; font-size:11px; color:#C4A882; font-style:italic; letter-spacing:1px; }
 </style>
 </head>
@@ -176,78 +199,78 @@ const DAYS = [
   { id:1, date:"7/24 (五)", title:"大濠公園・天神地下街 🌳🏛️", color:"#C8A882", bg:"#FDF3E8", emoji:"🌳",
     hsvg:"park",
     items:[
-      {time:"09:55", icon:"✈️", place:"福岡國際機場", note:"抵達！旅程開始", type:"t", il:"plane"},
+      {time:"09:55", icon:"✈️", place:"福岡國際機場", map:"https://www.google.com/maps/search/?api=1&query=福岡国際空港", note:"抵達！旅程開始", type:"t", il:"plane"},
       {time:"10:30", icon:"🚇", place:"搭乘福岡市地下鐵機場線", note:"", type:"t", il:"train"},
-      {time:"11:30", icon:"🧳", place:"天神站・飯店寄放行李", note:"", type:"t", il:"luggage"},
-      {time:"12:00", icon:"🍽️", place:"午餐｜&LOCALS 大濠公園", note:"", type:"f", il:"ramen"},
-      {time:"13:30", icon:"🌊", place:"大濠公園", note:"湖畔散步・日式庭園🦢", type:"s", il:"park"},
-      {time:"14:30", icon:"🎨", place:"福岡市美術館", note:"", type:"s", il:"museum"},
-      {time:"15:30", icon:"🥐", place:"AKARI BAKERY 麵包店", note:"", type:"f", il:"bread"},
-      {time:"16:30", icon:"🛍️", place:"天神地下街", note:"無印良品・UQ 購物", type:"sh", il:"shop"},
-      {time:"17:30", icon:"🍞", place:"the full full 明太子麵包", note:"", type:"f", il:"bread"},
-      {time:"19:00", icon:"🍜", place:"晚餐｜一蘭拉麵", note:"個人隔間，博多必吃！", type:"f", il:"ramen"},
-      {time:"20:30", icon:"🛒", place:"唐吉軻德掃貨", note:"", type:"sh", il:"shop"},
+      {time:"11:30", icon:"🧳", place:"天神站・飯店寄放行李", map:"https://maps.app.goo.gl/2KxNNGagBXnURXM38", note:"", type:"t", il:"luggage"},
+      {time:"12:00", icon:"🍽️", place:"午餐｜&LOCALS 大濠公園", map:"https://www.google.com/maps/search/?api=1&query=%26LOCALS+大濠公園+福岡", note:"", type:"f", il:"ramen"},
+      {time:"13:30", icon:"🌊", place:"大濠公園", map:"https://www.google.com/maps/search/?api=1&query=大濠公園+福岡市", note:"湖畔散步・日式庭園🦢", type:"s", il:"park"},
+      {time:"14:30", icon:"🎨", place:"福岡市美術館", map:"https://www.google.com/maps/search/?api=1&query=福岡市美術館", note:"", type:"s", il:"museum"},
+      {time:"15:30", icon:"🥐", place:"AKARI BAKERY 麵包店", map:"https://maps.app.goo.gl/h2NbCiH1N4XBoaSX8", note:"", type:"f", il:"bread"},
+      {time:"16:30", icon:"🛍️", place:"天神地下街", map:"https://www.google.com/maps/search/?api=1&query=天神地下街+福岡", note:"無印良品・UQ 購物", type:"sh", il:"shop"},
+      {time:"17:30", icon:"🍞", place:"the full full 明太子麵包", map:"https://maps.app.goo.gl/2qQQvMGktS52AcUT9", note:"", type:"f", il:"bread"},
+      {time:"19:00", icon:"🍜", place:"晚餐｜一蘭拉麵", map:"https://maps.app.goo.gl/PB1nrm8Sir4mdTuu7", note:"個人隔間，博多必吃！", type:"f", il:"ramen"},
+      {time:"20:30", icon:"🛒", place:"唐吉軻德掃貨", map:"https://maps.app.goo.gl/jEjDNJMgH7fWbT176", note:"", type:"sh", il:"shop"},
     ]
   },
   { id:2, date:"7/25 (六)", title:"由布院・博多屋台 🚂🏞️", color:"#9EB89A", bg:"#EDF5EB", emoji:"🏞️",
     hsvg:"yufuin",
     items:[
-      {time:"09:17", icon:"🚂", place:"博多站出發", note:"特急「由布院之森」🌿", type:"t", il:"yufuin"},
-      {time:"11:31", icon:"🚉", place:"由布院站抵達", note:"", type:"t", il:"yufuin"},
-      {time:"11:45", icon:"🍱", place:"由布釜飯「心」金鱗湖本店", note:"⏳ 排隊等候 1.5～2 小時", type:"f", il:"bowl"},
+      {time:"09:17", icon:"🚂", place:"博多站出發", map:"https://www.google.com/maps/search/?api=1&query=博多駅", note:"特急「由布院之森」🌿", type:"t", il:"yufuin"},
+      {time:"11:31", icon:"🚉", place:"由布院站抵達", map:"https://www.google.com/maps/search/?api=1&query=由布院駅", note:"", type:"t", il:"yufuin"},
+      {time:"11:45", icon:"🍱", place:"午餐｜由布釜飯「心」金鱗湖本店", map:"https://www.google.com/maps/search/?api=1&query=由布院+釜めし+心+金鱗湖本店", note:"⏳ 排隊等候 1.5～2 小時", type:"f", il:"bowl"},
       {time:"13:30", icon:"🍚", place:"預計入座用餐", note:"釜飯超值得等！", type:"f", il:"bowl"},
-      {time:"14:30", icon:"🏞️", place:"金鱗湖周邊巷弄", note:"湯之坪街道・小店巡禮", type:"s", il:"kinrinko"},
-      {time:"17:56", icon:"🚂", place:"由布院站出發", note:"搭特急返回市區", type:"t", il:"train"},
-      {time:"18:10", icon:"🏬", place:"博多車站・逛逛", note:"", type:"s", il:"shop"},
-      {time:"20:00", icon:"🏮", place:"屋台天通餐車", note:"博多名物！露天小吃攤🌃", type:"f", il:"yatai"},
-      {time:"", icon:"①", place:"えんまんや", note:"", type:"n"},
-      {time:"", icon:"②", place:"屋台 武ちゃん", note:"煎餃・關東煮・手作餃子🥟", type:"n"},
-      {time:"", icon:"③", place:"屋台 峰ちゃん", note:"關東煮🍢", type:"n"},
-      {time:"", icon:"④", place:"小金ちゃん・たけちゃん", note:"炒拉麵・老辣妹推薦⭐", type:"n"},
+      {time:"14:30", icon:"🏞️", place:"金鱗湖周邊巷弄", map:"https://www.google.com/maps/search/?api=1&query=金鱗湖+由布院", note:"湯之坪街道・小店巡禮", type:"s", il:"kinrinko"},
+      {time:"17:56", icon:"🚂", place:"由布院站出發", map:"https://www.google.com/maps/search/?api=1&query=由布院駅", note:"搭特急返回市區", type:"t", il:"train"},
+      {time:"18:10", icon:"🏬", place:"博多車站・逛逛", map:"https://www.google.com/maps/search/?api=1&query=博多駅", note:"", type:"s", il:"shop"},
+      {time:"20:00", icon:"🏮", place:"晚餐｜屋台天通餐車", map:"https://maps.app.goo.gl/M6jkD7Xk6E5h3aSE7", note:"博多名物！露天小吃攤🌃", type:"f", il:"yatai"},
+      {time:"", icon:"①", place:"えんまんや", map:"https://www.google.com/maps/search/?api=1&query=えんまんや+博多+屋台", note:"", type:"n"},
+      {time:"", icon:"②", place:"屋台 武ちゃん", map:"https://www.google.com/maps/search/?api=1&query=屋台+武ちゃん+博多", note:"煎餃・關東煮・手作餃子🥟", type:"n"},
+      {time:"", icon:"③", place:"屋台 峰ちゃん", map:"https://www.google.com/maps/search/?api=1&query=屋台+峰ちゃん+博多", note:"關東煮🍢", type:"n"},
+      {time:"", icon:"④", place:"小金ちゃん・たけちゃん", map:"https://maps.app.goo.gl/6GWULc1ZqNwDSkXm7", note:"炒拉麵・老辣妹推薦⭐", type:"n"},
     ]
   },
   { id:3, date:"7/26 (日)", title:"海洋世界・天神藥院 🐬🛍️", color:"#7BADC7", bg:"#E8F4FA", emoji:"🐬",
     hsvg:"dolphin",
     items:[
-      {time:"08:00", icon:"🍗", place:"早餐｜Hakata Asa 雞肉定食", note:"已訂位 ✅", type:"f", il:"bowl"},
+      {time:"08:00", icon:"🍗", place:"早餐｜Hakata Asa 雞肉定食", map:"https://maps.app.goo.gl/xFsUEy1kUGkXndhh6", note:"已訂位 ✅", type:"f", il:"bowl"},
       {time:"09:00", icon:"🚌", place:"搭公車前往", note:"25A → Shikanoshima（9:26發車）", type:"t", il:"train"},
-      {time:"10:05", icon:"🐬", place:"海洋世界 海之中道", note:"含午餐，停留約 4 小時", type:"s", il:"dolphin"},
+      {time:"10:05", icon:"🐬", place:"海洋世界 海之中道", map:"https://www.google.com/maps/search/?api=1&query=マリンワールド海の中道+福岡", note:"含午餐，停留約 4 小時", type:"s", il:"dolphin"},
       {time:"", icon:"①", place:"海豚・海獅秀", note:"2樓表演池，前排注意水噴！💦", type:"n"},
       {time:"", icon:"②", place:"沙丁魚風暴", note:"1～2樓大水槽・燈光音樂超壯觀✨", type:"n"},
-      {time:"11:30", icon:"🐠", place:"海洋世界餐廳用餐", note:"隔玻璃看海豚游泳邊用餐", type:"f", il:"aquarium"},
+      {time:"11:30", icon:"🐠", place:"午餐｜海洋世界餐廳用餐", map:"https://www.google.com/maps/search/?api=1&query=マリンワールド海の中道+福岡", note:"隔玻璃看海豚游泳邊用餐", type:"f", il:"aquarium"},
       {time:"14:30", icon:"🚌", place:"搭公車返回市區", note:"", type:"t", il:"train"},
-      {time:"15:30", icon:"🛍️", place:"天神商圈・地下街・藥院選物店", note:"", type:"sh", il:"shop"},
-      {time:"18:30", icon:"🥩", place:"晚餐｜燒肉垂榕 焼肉ベンジャミン", note:"已訂位 ✅🔥", type:"f", il:"ramen"},
-      {time:"20:30", icon:"📷", place:"天神 Yodobashi Camera", note:"買家電・相機・3C", type:"sh", il:"camera"},
+      {time:"15:30", icon:"🛍️", place:"天神商圈・地下街・藥院選物店", map:"https://www.google.com/maps/search/?api=1&query=天神地下街+福岡", note:"", type:"sh", il:"shop"},
+      {time:"18:30", icon:"🥩", place:"晚餐｜燒肉垂榕 焼肉ベンジャミン", map:"https://maps.app.goo.gl/nsfZLjDgcytcPHNy5", note:"已訂位 ✅🔥", type:"f", il:"ramen"},
+      {time:"20:30", icon:"📷", place:"天神 Yodobashi Camera", map:"https://maps.app.goo.gl/ZysVf3N94bivkueH6", note:"買家電・相機・3C", type:"sh", il:"camera"},
     ]
   },
   { id:4, date:"7/27 (一)", title:"高千穗峽一日遊 🌋⛵", color:"#C4855A", bg:"#FBF0E7", emoji:"🌋",
     hsvg:"takachiko",
     items:[
-      {time:"07:45", icon:"🏪", place:"Lawson 福岡東方飯店集合", note:"Kkday 一日遊 🚌", type:"t", il:"luggage"},
-      {time:"11:00", icon:"⛵", place:"高千穗峽", note:"宮崎縣自然秘境・划小船！🌿", type:"s", il:"takachiko"},
-      {time:"12:30", icon:"🍜", place:"午餐｜千穂の家", note:"元祖流水麵，超好玩體驗！🎋", type:"f", il:"udon"},
-      {time:"14:30", icon:"🌋", place:"阿蘇火山・草地千里", note:"火山博物館，壯闊景色🌋", type:"s", il:"volcano"},
-      {time:"18:30", icon:"🚌", place:"博多車站下車", note:"", type:"t", il:"train"},
-      {time:"19:00", icon:"🍲", place:"晚餐｜華味鳥水炊鍋", note:"博多名物・開到11點🍲", type:"f", il:"nabe"},
+      {time:"07:45", icon:"🏪", place:"Lawson 福岡東方飯店集合", map:"https://maps.app.goo.gl/G1RfQoj1cyp5KvaE6", note:"Kkday 一日遊 🚌", type:"t", il:"luggage"},
+      {time:"11:00", icon:"⛵", place:"高千穗峽", map:"https://www.google.com/maps/search/?api=1&query=高千穂峡", note:"宮崎縣自然秘境・划小船！🌿", type:"s", il:"takachiko"},
+      {time:"12:30", icon:"🍜", place:"午餐｜千穂の家", map:"https://www.google.com/maps/search/?api=1&query=千穂の家+高千穂", note:"元祖流水麵，超好玩體驗！🎋", type:"f", il:"udon"},
+      {time:"14:30", icon:"🌋", place:"阿蘇火山・草地千里", map:"https://www.google.com/maps/search/?api=1&query=阿蘇山+草千里ヶ浜", note:"火山博物館，壯闊景色🌋", type:"s", il:"volcano"},
+      {time:"18:30", icon:"🚌", place:"博多車站下車", map:"https://www.google.com/maps/search/?api=1&query=博多駅", note:"", type:"t", il:"train"},
+      {time:"19:00", icon:"🍲", place:"晚餐｜華味鳥水炊鍋", map:"https://maps.app.goo.gl/TsCn8ZXyp3QLuxfe6", note:"博多名物・開到11點🍲", type:"f", il:"nabe"},
       {time:"宵夜", icon:"🏪", place:"便利商店補貨", note:"冰淇淋・零食・飲料🍦", type:"f", il:"bowl"},
     ]
   },
   { id:5, date:"7/28 (二)", title:"櫛田神社・川端通 ⛩️✈️", color:"#B87EA3", bg:"#F6ECF4", emoji:"⛩️",
     hsvg:"shrine",
     items:[
-      {time:"早餐", icon:"🍙", place:"おにぎりごりちゃん 天神店", note:"", type:"f", il:"onigiri"},
-      {time:"11:30", icon:"🍜", place:"茶壺烏龍麵 博多あかちょこべ", note:"⚠️ 千萬不要點大阪燒！", type:"f", il:"udon"},
-      {time:"13:00", icon:"⛩️", place:"櫛田神社", note:"停留約 1 小時，必拍景點⛩️", type:"s", il:"shrine"},
+      {time:"09:30", icon:"🍙", place:"早餐｜おにぎりごりちゃん 天神店", map:"https://maps.app.goo.gl/BXKfpq73phLUw7sw9", note:"", type:"f", il:"onigiri"},
+      {time:"11:30", icon:"🍜", place:"午餐｜茶壺烏龍麵 博多あかちょこべ", map:"https://maps.app.goo.gl/jKcDXmpuoxarpC778", note:"⚠️ 千萬不要點大阪燒！", type:"f", il:"udon"},
+      {time:"13:00", icon:"⛩️", place:"櫛田神社", map:"https://www.google.com/maps/search/?api=1&query=櫛田神社+福岡", note:"停留約 1 小時，必拍景點⛩️", type:"s", il:"shrine"},
       {time:"", icon:"①", place:"武將刀卡片型御守", note:"可放進錢包隨身攜帶🗡️", type:"n"},
       {time:"", icon:"②", place:"干支惠方盤", note:"樓門天花板・指針指出好運方位🧭", type:"n"},
       {time:"", icon:"③", place:"千年銀杏神木", note:"樹齡超千年・能量滿滿🌳", type:"n"},
       {time:"", icon:"④", place:"巨型裝飾山笠（飾り山）", note:"高達 13 公尺・全年展示🎪", type:"n", il:"dashi"},
-      {time:"13:30", icon:"🏮", place:"川端通商店街", note:"最後伴手禮衝刺！🎁", type:"s", il:"shop"},
-      {time:"14:30", icon:"🚇", place:"博多車站", note:"", type:"t", il:"train"},
+      {time:"13:30", icon:"🏮", place:"川端通商店街", map:"https://maps.app.goo.gl/DrsZGUprwJheiA5Z6", note:"最後伴手禮衝刺！🎁", type:"s", il:"shop"},
+      {time:"14:30", icon:"🚇", place:"博多車站 or 回飯店領行李", map:"https://maps.app.goo.gl/5qKcMqcwGykoSwNE7", note:"", type:"t", il:"train"},
       {time:"15:00", icon:"🚕", place:"搭計程車前往機場", note:"", type:"t", il:"plane"},
-      {time:"17:10", icon:"🛫", place:"福岡機場國際線航廈", note:"報到・最後逛免稅店", type:"t", il:"plane"},
-      {time:"19:10", icon:"✈️", place:"航班起飛返台", note:"旅程結束！下次再見福岡 💕", type:"t", il:"plane"},
+      {time:"17:10", icon:"🛫", place:"福岡機場國際線航廈", map:"https://www.google.com/maps/search/?api=1&query=福岡空港+国際線ターミナル", note:"報到・最後逛免稅店", type:"t", il:"plane"},
+      {time:"19:10", icon:"✈️", place:"航班起飛返台", map:"https://www.google.com/maps/search/?api=1&query=福岡空港+国際線ターミナル", note:"旅程結束！下次再見福岡 💕", type:"t", il:"plane"},
     ]
   },
   { id:"info", date:"", title:"🎒 旅遊注意事項", color:"#8BB5A0", bg:"#EBF5F0", emoji:"📋",
@@ -303,7 +326,24 @@ function render() {
         </div>
         <div>${IL[cur.hsvg]||''}</div>
       </div>
-      ${cur.sections.map(sec=>`
+      ${(() => {
+          const weatherCard = `<a href="https://www.data.jma.go.jp/multi/yoho/yoho_detail.html?code=400010&lang=cn_zt" target="_blank" style="
+            display:flex; align-items:center; gap:10px;
+            background:#EAF4FD; border:2px solid #7BADC7;
+            border-radius:14px; padding:12px 16px;
+            text-decoration:none; margin-bottom:12px;
+            color:#2C6E9E; font-weight:800; font-size:14px;
+          ">
+            <span style="font-size:28px">🌤️</span>
+            <div>
+              <div style="font-size:14px;font-weight:900;color:#2C6E9E;">福岡天氣查詢</div>
+              <div style="font-size:11px;color:#5A9EC0;margin-top:2px;">日本氣象廳官方預報 · 點擊查看最新天氣</div>
+            </div>
+            <span style="margin-left:auto;font-size:18px;">→</span>
+          </a>`;
+          return weatherCard;
+        })() +
+        cur.sections.map(sec=>`
         <div class="sec-card" style="--dc:${sec.color};--db:${sec.color}12">
           <div class="sec-head">
             ${sec.svg&&IL[sec.svg]?`<div>${IL[sec.svg]}</div>`:''}
@@ -350,7 +390,7 @@ function render() {
         <div class="tl-card" style="--cardbg:${tc.cardbg};--cardb:${tc.cardb}">
           <div class="tl-row-inner">
             <div class="tl-texts">
-              <div class="tl-name">${item.place}</div>
+              <div class="tl-name">${item.place}${item.map?` <a class="map-btn" href="${item.map}" target="_blank">📍</a>`:''}</div>
               ${item.note?`<div class="tl-note">${item.note}</div>`:''}
             </div>
             ${illHtml}
