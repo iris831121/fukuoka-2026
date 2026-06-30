@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>福岡五日遊 2026 🇯🇵</title>
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  font-family: 'Noto Sans TC','Hiragino Sans','PingFang TC',sans-serif;
+  background: #FDF7EF;
+  min-height: 100vh;
+  padding: 16px 12px 40px;
+}
+.wrap { max-width: 420px; margin: 0 auto; }
+
+/* ── Header ── */
+.header-box {
+  border: 2.5px solid #C8A882;
+  border-radius: 16px;
+  background: #FDF0E0CC;
+  text-align: center;
+  padding: 14px 12px 12px;
+  margin-bottom: 16px;
+}
+.header-top { display:flex; align-items:center; justify-content:center; gap:8px; margin-bottom:4px; }
+.header-flag { font-size:28px; }
+.header-title { font-size:22px; font-weight:900; color:#3D2C1E; letter-spacing:1px; }
+.header-year { font-size:13px; font-weight:700; color:#C8A882; letter-spacing:2px; margin-bottom:6px; }
+.header-sub { display:flex; justify-content:center; gap:8px; flex-wrap:wrap; }
+.header-pill { border:1.5px solid #D4B896; border-radius:20px; padding:3px 12px; font-size:12px; color:#9E7A5A; font-weight:700; background:#FFF; }
+
+/* ── Tabs ── */
+.tabs { display:flex; gap:6px; overflow-x:auto; padding-bottom:6px; margin-bottom:14px; scrollbar-width:none; }
+.tabs::-webkit-scrollbar { display:none; }
+.tab { flex-shrink:0; padding:7px 11px; border-radius:14px; border:1.5px solid #E0D0C0; cursor:pointer; background:#FFF; font-size:10px; color:#9E8570; text-align:center; transition:all 0.2s; line-height:1.4; user-select:none; }
+.tab.active { color:var(--tc); background:var(--tb); border-color:var(--tc); font-weight:800; }
+.tab-emoji { font-size:18px; display:block; }
+
+/* ── Day header banner ── */
+.day-banner {
+  border-radius:16px;
+  padding:12px 16px 10px;
+  margin-bottom:10px;
+  display:flex; justify-content:space-between; align-items:center; gap:8px;
+  border:2px solid var(--dc);
+  background:var(--db);
+}
+.washi {
+  display:inline-block;
+  padding:2px 10px;
+  border-radius:5px;
+  font-size:10px; font-weight:800; color:#3D2C1E;
+  margin-bottom:4px;
+  transform:rotate(-0.6deg);
+  letter-spacing:.5px;
+}
+.day-title { font-size:17px; font-weight:900; color:#3D2C1E; line-height:1.3; }
+
+/* ── Timeline rows ── */
+.tl-wrap { padding: 0 2px; }
+.tl-row {
+  display:flex; align-items:flex-start; gap:8px;
+  margin-bottom:8px; position:relative;
+}
+.tl-row.is-note { margin-bottom:5px; padding-left:44px; }
+
+/* left column: time dot */
+.tl-col { flex-shrink:0; width:40px; display:flex; flex-direction:column; align-items:center; gap:2px; }
+.tl-dot {
+  width:30px; height:30px; border-radius:50%;
+  background:#FFF;
+  border:2px solid var(--dc,#C8A882);
+  display:flex; align-items:center; justify-content:center;
+  font-size:14px;
+  flex-shrink:0;
+}
+.tl-time { font-size:9px; font-weight:800; color:var(--dc,#C8A882); white-space:nowrap; text-align:center; }
+.tl-vline {
+  position:absolute; left:19px; top:34px; bottom:-8px;
+  border-left:2px dashed var(--dc,#C8A882); opacity:.35;
+}
+
+/* right card: text + inline illust */
+.tl-card {
+  flex:1; min-width:0;
+  border:1.5px solid var(--cardb,#E8D9C4);
+  border-radius:13px;
+  background:var(--cardbg,#FAF5EE);
+  padding:8px 10px;
+}
+.tl-row-inner {
+  display:flex; align-items:center; justify-content:space-between; gap:6px;
+  flex-wrap:nowrap;
+}
+.tl-texts { flex:1; min-width:0; }
+.tl-name { font-size:13px; font-weight:800; color:#3D2C1E; line-height:1.35; }
+.tl-note { font-size:11px; color:#9E8570; line-height:1.4; margin-top:2px; }
+.tl-illust { flex-shrink:0; display:flex; align-items:center; }
+
+/* note sub-rows */
+.note-inner { display:flex; align-items:flex-start; gap:6px; }
+.note-num { flex-shrink:0; width:20px; height:20px; border-radius:50%; background:#F5F0EA; border:1.5px solid #D4C5B5; display:flex; align-items:center; justify-content:center; font-size:10px; font-weight:800; color:#9E8570; }
+.note-body { flex:1; }
+.note-place { font-size:12px; font-weight:700; color:#7A6655; }
+.note-sub { font-size:11px; color:#A89480; margin-left:3px; }
+.note-illust { flex-shrink:0; }
+
+/* ── Info page ── */
+.sec-card { border:2px solid var(--dc); border-radius:14px; background:var(--db); padding:12px 14px; margin-bottom:10px; }
+.sec-head { display:flex; align-items:center; gap:8px; margin-bottom:8px; }
+.sec-title { font-size:13px; font-weight:900; color:#3D2C1E; }
+.info-row { display:flex; align-items:flex-start; gap:8px; background:#FFFFFF99; border-radius:10px; padding:7px 10px; margin-bottom:6px; border:1px solid var(--dc); font-size:12px; color:#4A3728; line-height:1.5; }
+.info-row:last-child { margin-bottom:0; }
+.info-icon { font-size:17px; flex-shrink:0; margin-top:1px; }
+
+.footer { text-align:center; padding:14px 0 0; font-size:11px; color:#C4A882; font-style:italic; letter-spacing:1px; }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<div class="header-box">
+  <div class="header-top">
+    <span class="header-flag">🇯🇵</span>
+    <div>
+      <div class="header-year">✈️ 2026 SUMMER ✈️</div>
+      <div class="header-title">福岡五日家族旅遊</div>
+    </div>
+    <span class="header-flag">🌸</span>
+  </div>
+  <div class="header-sub">
+    <span class="header-pill">📅 7/24～7/28</span>
+    <span class="header-pill">👨‍👩‍👦 六人同行</span>
+    <span class="header-pill">🍜 吃遍九州</span>
+  </div>
+</div>
+
+<div class="tabs" id="tabs"></div>
+<div id="content"></div>
+<div class="footer">福岡 · 2026年夏 · 家族旅行の思い出 🌸</div>
+</div>
+
+<script>
+/* ── SVG illustrations (inline, used after text) ─────────────────── */
+const IL = {
+  plane:`<svg width="32" height="28" viewBox="0 0 40 36" fill="none"><path d="M4 20C8 14 15 10 23 9 31 8 37 14 35 20 33 26 24 30 16 28 10 26 4 24 4 20Z" stroke="#C8A882" stroke-width="1.6" fill="#C8A88220"/><path d="M23 9 31 4 30 12Z" stroke="#C8A882" stroke-width="1.3" fill="#C8A88240"/><path d="M8 26 2 31 7 29Z" stroke="#C8A882" stroke-width="1.3" fill="#C8A88240"/><path d="M17 19 34 17" stroke="#C8A882" stroke-width="1" stroke-dasharray="2,2" stroke-linecap="round"/></svg>`,
+  train:`<svg width="32" height="34" viewBox="0 0 40 44" fill="none"><rect x="6" y="5" width="28" height="22" rx="5" stroke="#9EB89A" stroke-width="1.6" fill="#9EB89A18"/><path d="M6 18 34 18" stroke="#9EB89A" stroke-width="1.4" stroke-linecap="round"/><rect x="10" y="8" width="7" height="7" rx="2" stroke="#9EB89A" stroke-width="1.3" fill="white"/><rect x="23" y="8" width="7" height="7" rx="2" stroke="#9EB89A" stroke-width="1.3" fill="white"/><circle cx="13" cy="33" r="3" stroke="#9EB89A" stroke-width="1.4" fill="#9EB89A30"/><circle cx="27" cy="33" r="3" stroke="#9EB89A" stroke-width="1.4" fill="#9EB89A30"/><path d="M13 30 13 27 M27 30 27 27" stroke="#9EB89A" stroke-width="1.4" stroke-linecap="round"/><path d="M9 5 11 2 M31 5 29 2" stroke="#9EB89A" stroke-width="1" stroke-linecap="round"/></svg>`,
+  ramen:`<svg width="34" height="30" viewBox="0 0 44 40" fill="none"><ellipse cx="22" cy="27" rx="16" ry="8" stroke="#E8998A" stroke-width="1.6" fill="#E8998A18"/><path d="M6 27C6 35 10 39 22 39 34 39 38 35 38 27" stroke="#E8998A" stroke-width="1.6" fill="#E8998A20"/><path d="M6 27 38 27" stroke="#E8998A" stroke-width="1.5"/><path d="M13 23Q15 19 17 23Q19 27 21 23Q23 19 25 23Q27 27 29 23" stroke="#E8998A" stroke-width="1.3" fill="none" stroke-linecap="round"/><circle cx="14" cy="31" r="2.5" fill="#E89940" opacity=".6"/><circle cx="28" cy="32" r="2" fill="#9E3030" opacity=".5"/><path d="M16 8C16 4 18 2 18 2M22 6C22 2 24 0 24 0M28 8C28 4 30 2 30 2" stroke="#E8998A" stroke-width="1.2" stroke-linecap="round"/></svg>`,
+  luggage:`<svg width="30" height="34" viewBox="0 0 40 44" fill="none"><rect x="5" y="11" width="30" height="27" rx="5" stroke="#8BB5A0" stroke-width="1.6" fill="#8BB5A018"/><path d="M13 11C13 6 27 6 27 11" stroke="#8BB5A0" stroke-width="1.6" fill="none" stroke-linecap="round"/><path d="M5 23 35 23" stroke="#8BB5A0" stroke-width="1.4" stroke-linecap="round"/><rect x="17" y="15" width="6" height="6" rx="1.5" stroke="#8BB5A0" stroke-width="1.3" fill="white"/><circle cx="12" cy="40" r="3" stroke="#8BB5A0" stroke-width="1.4" fill="#8BB5A030"/><circle cx="28" cy="40" r="3" stroke="#8BB5A0" stroke-width="1.4" fill="#8BB5A030"/></svg>`,
+  park:`<svg width="32" height="34" viewBox="0 0 42 44" fill="none"><ellipse cx="13" cy="15" rx="9" ry="8" stroke="#9EB89A" stroke-width="1.6" fill="#9EB89A28"/><ellipse cx="27" cy="13" rx="8" ry="7" stroke="#9EB89A" stroke-width="1.5" fill="#9EB89A35"/><path d="M13 23 13 36 M27 20 27 36" stroke="#9EB89A" stroke-width="1.8" stroke-linecap="round"/><path d="M3 36 39 36" stroke="#9EB89A" stroke-width="1.5" stroke-linecap="round"/><path d="M5 30Q12 26 20 30Q28 34 37 30" stroke="#9EB89A" stroke-width="1" fill="none" stroke-linecap="round" opacity=".5"/></svg>`,
+  museum:`<svg width="32" height="32" viewBox="0 0 42 40" fill="none"><path d="M3 29 39 29 39 35 3 35Z" stroke="#C8A882" stroke-width="1.5" fill="#C8A88215"/><path d="M3 15 21 3 39 15Z" stroke="#C8A882" stroke-width="1.5" fill="#C8A88225"/><rect x="7" y="17" width="6" height="12" rx="1" stroke="#C8A882" stroke-width="1.3" fill="white"/><rect x="17" y="17" width="6" height="12" rx="1" stroke="#C8A882" stroke-width="1.3" fill="white"/><rect x="27" y="17" width="6" height="12" rx="1" stroke="#C8A882" stroke-width="1.3" fill="white"/></svg>`,
+  bread:`<svg width="32" height="28" viewBox="0 0 42 36" fill="none"><path d="M5 22C5 13 9 7 21 7 33 7 37 13 37 22 37 28 33 32 21 32 9 32 5 28 5 22Z" stroke="#C8A882" stroke-width="1.6" fill="#C8A88225"/><path d="M8 20C10 17 14 15 18 17 22 19 26 17 30 15" stroke="#C4855A" stroke-width="1.2" fill="none" stroke-linecap="round" opacity=".55"/><circle cx="14" cy="13" r="2" fill="#E8998A" opacity=".7"/><circle cx="22" cy="11" r="1.5" fill="#E8998A" opacity=".6"/><circle cx="29" cy="14" r="1.5" fill="#E8998A" opacity=".5"/></svg>`,
+  shop:`<svg width="30" height="32" viewBox="0 0 40 40" fill="none"><path d="M7 15 5 36 35 36 33 15Z" stroke="#C8A882" stroke-width="1.6" fill="#C8A88218"/><path d="M13 15C13 9 27 9 27 15" stroke="#C8A882" stroke-width="1.6" fill="none" stroke-linecap="round"/><path d="M11 23 29 23" stroke="#C8A882" stroke-width="1.2" stroke-linecap="round" stroke-dasharray="2,1.5"/><path d="M12 29 28 29" stroke="#C8A882" stroke-width="1.2" stroke-linecap="round" stroke-dasharray="2,1.5"/><path d="M5 15 35 15" stroke="#C8A882" stroke-width="1.4" stroke-linecap="round"/></svg>`,
+  yufuin:`<svg width="38" height="30" viewBox="0 0 50 40" fill="none"><path d="M3 34 47 34" stroke="#9EB89A" stroke-width="1.2" stroke-dasharray="3,2" stroke-linecap="round"/><rect x="4" y="19" width="42" height="15" rx="5" stroke="#9EB89A" stroke-width="1.6" fill="#9EB89A18"/><path d="M4 28 46 28" stroke="#9EB89A" stroke-width="1.2" stroke-linecap="round"/><rect x="8" y="22" width="8" height="4" rx="1.5" stroke="#9EB89A" stroke-width="1.2" fill="white"/><rect x="21" y="22" width="8" height="4" rx="1.5" stroke="#9EB89A" stroke-width="1.2" fill="white"/><rect x="34" y="22" width="8" height="4" rx="1.5" stroke="#9EB89A" stroke-width="1.2" fill="white"/><circle cx="13" cy="36" r="2.8" stroke="#9EB89A" stroke-width="1.4" fill="#9EB89A30"/><circle cx="37" cy="36" r="2.8" stroke="#9EB89A" stroke-width="1.4" fill="#9EB89A30"/><path d="M7 19 9 15 14 17 20 13 25 15 30 11 35 15 41 13 43 19" stroke="#9EB89A" stroke-width="1.3" fill="none" stroke-linecap="round" stroke-linejoin="round"/><path d="M18 13C18 9 20 7 20 7S22 9 22 13" stroke="#9EB89A" stroke-width="1.2" fill="#9EB89A20"/></svg>`,
+  bowl:`<svg width="32" height="28" viewBox="0 0 42 36" fill="none"><path d="M5 16C5 26 11 33 21 33 31 33 37 26 37 16Z" stroke="#9EB89A" stroke-width="1.6" fill="#9EB89A18"/><path d="M3 16 39 16" stroke="#9EB89A" stroke-width="1.6" stroke-linecap="round"/><path d="M13 12C15 8 19 6 21 8 23 6 27 8 29 12" stroke="#9EB89A" stroke-width="1.3" fill="none" stroke-linecap="round"/><path d="M10 24Q16 22 21 24Q26 26 33 24" stroke="#9EB89A" stroke-width="1" fill="none" stroke-linecap="round" opacity=".5"/><circle cx="16" cy="21" r="1.8" fill="#E8998A" opacity=".6"/><circle cx="26" cy="23" r="1.8" fill="#C4855A" opacity=".5"/></svg>`,
+  kinrinko:`<svg width="34" height="28" viewBox="0 0 46 38" fill="none"><ellipse cx="23" cy="23" rx="18" ry="9" stroke="#7BADC7" stroke-width="1.6" fill="#7BADC720"/><path d="M5 23C5 31 12 35 23 35 34 35 41 31 41 23" stroke="#7BADC7" stroke-width="1.4" fill="#7BADC718"/><path d="M13 10C16 6 20 4 23 6 26 4 30 6 33 10" stroke="#7BADC7" stroke-width="1.3" fill="none" stroke-linecap="round"/><path d="M9 16C9 12 13 8 13 8" stroke="#7BADC7" stroke-width="1.2" stroke-linecap="round"/><path d="M37 16C37 12 33 8 33 8" stroke="#7BADC7" stroke-width="1.2" stroke-linecap="round"/><circle cx="17" cy="28" r="1.5" fill="#7BADC7" opacity=".5"/><circle cx="29" cy="30" r="1.5" fill="#7BADC7" opacity=".5"/></svg>`,
+  yatai:`<svg width="36" height="34" viewBox="0 0 48 44" fill="none"><path d="M3 17 43 17 39 11 7 11Z" stroke="#C4855A" stroke-width="1.5" fill="#C4855A25"/><path d="M7 11 5 2 M39 11 41 2" stroke="#C4855A" stroke-width="1.2" stroke-linecap="round"/><path d="M5 2 41 2" stroke="#C4855A" stroke-width="1.2" stroke-linecap="round"/><rect x="3" y="17" width="40" height="19" rx="2" stroke="#C4855A" stroke-width="1.5" fill="#C4855A12"/><path d="M3 36 3 42 M43 36 43 42" stroke="#C4855A" stroke-width="1.6" stroke-linecap="round"/><circle cx="11" cy="25" r="3" stroke="#E8998A" stroke-width="1.2" fill="#E8998A20"/><rect x="19" y="22" width="8" height="5" rx="2" stroke="#E8998A" stroke-width="1.2" fill="#E8998A18"/><path d="M29 23 36 23 M29 27 36 27" stroke="#E8998A" stroke-width="1" stroke-linecap="round"/><circle cx="8" cy="2" r="1.5" fill="#E8C86E" opacity=".7"/><circle cx="23" cy="2" r="1.5" fill="#E8C86E" opacity=".7"/><circle cx="38" cy="2" r="1.5" fill="#E8C86E" opacity=".7"/></svg>`,
+  dolphin:`<svg width="36" height="28" viewBox="0 0 50 38" fill="none"><path d="M3 23C7 14 16 10 25 12 34 14 41 20 39 27 37 32 29 33 21 28 13 23 7 27 3 23Z" stroke="#7BADC7" stroke-width="1.6" fill="#7BADC720"/><path d="M36 15C41 10 45 5 42 3 39 3 35 8 34 14Z" stroke="#7BADC7" stroke-width="1.4" fill="#7BADC730"/><circle cx="29" cy="17" r="2.2" stroke="#7BADC7" stroke-width="1.2" fill="white"/><circle cx="29.7" cy="16.3" r=".9" fill="#3D6A8A"/><path d="M3 23C1 27 3 33 7 29" stroke="#7BADC7" stroke-width="1.4" fill="#7BADC720"/><path d="M21 28C23 33 27 35 29 32" stroke="#7BADC7" stroke-width="1.2" stroke-linecap="round" fill="none"/><path d="M5 31 9 33 M11 35 15 35" stroke="#7BADC7" stroke-width="1" stroke-linecap="round" opacity=".5"/></svg>`,
+  aquarium:`<svg width="34" height="30" viewBox="0 0 48 42" fill="none"><rect x="3" y="6" width="42" height="28" rx="4" stroke="#7BADC7" stroke-width="1.6" fill="#7BADC712"/><path d="M9 14C11 12 15 13 15 16 15 19 11 20 9 18 7 16 7 14 9 12Z" stroke="#7BADC7" stroke-width="1.2" fill="#7BADC725"/><path d="M27 10C29 8 33 9 33 12 33 15 29 16 27 14 25 12 25 10 27 8Z" stroke="#7BADC7" stroke-width="1.2" fill="#7BADC725"/><path d="M15 26C17 22 19 24 21 22 23 20 25 24 27 22 29 20 33 24 35 22" stroke="#7BADC7" stroke-width="1.3" fill="none" stroke-linecap="round"/><circle cx="11" cy="30" r="2" fill="#E8998A" opacity=".6"/><circle cx="23" cy="28" r="2" fill="#9EB89A" opacity=".5"/><circle cx="35" cy="30" r="2" fill="#C8A882" opacity=".5"/></svg>`,
+  takachiko:`<svg width="34" height="30" viewBox="0 0 48 42" fill="none"><path d="M2 38Q12 18 24 8Q36 18 46 38Z" stroke="#9EB89A" stroke-width="1.5" fill="#9EB89A18"/><path d="M13 38C13 32 24 24 24 18" stroke="#7BADC7" stroke-width="1.4" fill="none" stroke-linecap="round"/><ellipse cx="24" cy="36" rx="10" ry="4" stroke="#7BADC7" stroke-width="1.3" fill="#7BADC720"/><path d="M17 38 17 42 M24 34 24 42 M31 38 31 42" stroke="#7BADC7" stroke-width="1.2" stroke-linecap="round"/><circle cx="24" cy="6" r="2.5" stroke="#9EB89A" stroke-width="1.2" fill="white"/></svg>`,
+  udon:`<svg width="32" height="28" viewBox="0 0 44 38" fill="none"><ellipse cx="22" cy="28" rx="16" ry="8" stroke="#C4855A" stroke-width="1.6" fill="#C4855A18"/><path d="M6 28C6 36 12 40 22 40 32 40 38 36 38 28" stroke="#C4855A" stroke-width="1.5" fill="#C4855A20"/><path d="M6 28 38 28" stroke="#C4855A" stroke-width="1.5"/><path d="M11 24C13 20 15 22 17 18 19 14 21 20 23 18 25 16 27 22 29 20 31 18 33 22 35 20" stroke="#C4855A" stroke-width="1.4" fill="none" stroke-linecap="round"/><circle cx="16" cy="20" r="1.5" fill="#9EB89A" opacity=".6"/><circle cx="29" cy="18" r="1.5" fill="#E8998A" opacity=".5"/></svg>`,
+  nabe:`<svg width="34" height="28" viewBox="0 0 46 38" fill="none"><path d="M5 20C5 30 11 36 23 36 35 36 41 30 41 20L5 20Z" stroke="#C4855A" stroke-width="1.6" fill="#C4855A18"/><path d="M3 20 43 20 41 16 5 16Z" stroke="#C4855A" stroke-width="1.5" fill="#C4855A25"/><path d="M1 16 3 20 M45 16 43 20" stroke="#C4855A" stroke-width="1.4" stroke-linecap="round"/><path d="M13 12 13 7C13 5 15 3 17 5 19 7 19 9 19 12" stroke="#C4855A" stroke-width="1.3" fill="none" stroke-linecap="round"/><circle cx="13" cy="26" r="2.5" fill="#E8998A" opacity=".6"/><circle cx="23" cy="28" r="3" fill="#9EB89A" opacity=".5"/><circle cx="33" cy="25" r="2.5" fill="#C4855A" opacity=".5"/></svg>`,
+  shrine:`<svg width="32" height="38" viewBox="0 0 44 48" fill="none"><path d="M17 46 17 27 27 27 27 46" stroke="#B87EA3" stroke-width="1.5" fill="#B87EA318"/><rect x="15" y="27" width="14" height="19" rx="1" stroke="#B87EA3" stroke-width="1.4" fill="white"/><path d="M19 46 19 35 25 35 25 46" stroke="#B87EA3" stroke-width="1.2" fill="#B87EA318"/><path d="M5 27 22 13 39 27" stroke="#B87EA3" stroke-width="1.6" fill="#B87EA320"/><path d="M3 29 41 29" stroke="#B87EA3" stroke-width="1.5" stroke-linecap="round"/><path d="M3 29 3 35 M41 29 41 35" stroke="#B87EA3" stroke-width="1.4" stroke-linecap="round"/><circle cx="22" cy="21" r="2" stroke="#B87EA3" stroke-width="1.2" fill="white"/><path d="M4 23 6 19 M40 23 38 19" stroke="#B87EA3" stroke-width="1.2" stroke-linecap="round"/><path d="M10 27 14 23 M34 27 30 23" stroke="#B87EA3" stroke-width="1.1" stroke-linecap="round"/></svg>`,
+  dashi:`<svg width="32" height="40" viewBox="0 0 46 50" fill="none"><rect x="8" y="18" width="30" height="28" rx="2" stroke="#B87EA3" stroke-width="1.4" fill="#B87EA312"/><path d="M7 18 23 3 39 18" stroke="#B87EA3" stroke-width="1.6" fill="#B87EA320"/><path d="M5 20 41 20" stroke="#B87EA3" stroke-width="1.3" stroke-linecap="round"/><path d="M14 18 14 46 M32 18 32 46" stroke="#B87EA3" stroke-width="1.2" stroke-linecap="round" opacity=".4"/><path d="M7 9 5 3 M39 9 41 3" stroke="#B87EA3" stroke-width="1.2" stroke-linecap="round"/><path d="M5 3 41 3" stroke="#B87EA3" stroke-width="1.2" stroke-linecap="round"/><circle cx="11" cy="2.5" r="1.5" fill="#E8C86E" opacity=".8"/><circle cx="23" cy="2" r="1.5" fill="#E8C86E" opacity=".8"/><circle cx="35" cy="2.5" r="1.5" fill="#E8C86E" opacity=".8"/><path d="M18 28C20 24 22 26 24 24 26 22 28 26 30 24" stroke="#E8998A" stroke-width="1.2" fill="none" stroke-linecap="round"/></svg>`,
+  onigiri:`<svg width="30" height="32" viewBox="0 0 40 40" fill="none"><path d="M7 32C3 32 3 24 9 16 13 10 17 6 19 6 21 6 25 10 29 16 35 24 35 32 31 32Z" stroke="#C8A882" stroke-width="1.6" fill="#C8A88220"/><path d="M7 32 31 32 31 36 7 36Z" stroke="#9EB89A" stroke-width="1.4" fill="#9EB89A45"/><path d="M13 22C15 18 19 16 23 18 25 20 25 24 21 26 17 28 13 26 13 22Z" stroke="#E8998A" stroke-width="1.2" fill="#E8998A20"/></svg>`,
+  volcano:`<svg width="34" height="30" viewBox="0 0 48 40" fill="none"><path d="M3 38 20 9 28 20 36 3 45 38Z" stroke="#C4855A" stroke-width="1.5" fill="#C4855A18" stroke-linecap="round" stroke-linejoin="round"/><path d="M3 38 45 38" stroke="#C4855A" stroke-width="1.5" stroke-linecap="round"/><path d="M15 23 20 17 24 23" stroke="white" stroke-width="1.4" fill="white" stroke-linecap="round" stroke-linejoin="round"/><path d="M32 14C34 9 38 7 38 7" stroke="#E8998A" stroke-width="1.3" stroke-linecap="round" opacity=".7"/><path d="M36 9C40 5 42 3 42 3" stroke="#E8998A" stroke-width="1.1" stroke-linecap="round" opacity=".5"/></svg>`,
+  camera:`<svg width="32" height="28" viewBox="0 0 44 38" fill="none"><rect x="3" y="9" width="38" height="25" rx="5" stroke="#C8A882" stroke-width="1.5" fill="#C8A88218"/><path d="M15 9 19 3 25 3 29 9" stroke="#C8A882" stroke-width="1.3" fill="#C8A88220"/><circle cx="22" cy="22" r="7" stroke="#C8A882" stroke-width="1.5" fill="white"/><circle cx="22" cy="22" r="4.5" stroke="#C8A882" stroke-width="1.2" fill="#7BADC720"/><circle cx="22" cy="22" r="2" fill="#3D6A8A" opacity=".6"/><circle cx="35" cy="15" r="2.5" stroke="#C8A882" stroke-width="1.1" fill="white"/><circle cx="20" cy="19" r="1.2" fill="white" opacity=".6"/></svg>`,
+  passport:`<svg width="28" height="32" viewBox="0 0 36 40" fill="none"><rect x="3" y="2" width="30" height="36" rx="4" stroke="#7BADC7" stroke-width="1.5" fill="#7BADC712"/><circle cx="18" cy="17" r="7" stroke="#7BADC7" stroke-width="1.3" fill="white"/><path d="M11 17C13 12 23 12 25 17" stroke="#7BADC7" stroke-width="1.1" fill="#7BADC720"/><path d="M11 17C13 22 23 22 25 17" stroke="#7BADC7" stroke-width="1.1" fill="#7BADC715"/><path d="M18 10 18 24 M11 17 25 17" stroke="#7BADC7" stroke-width=".9" stroke-linecap="round" opacity=".4"/><path d="M7 29 29 29 M7 33 20 33" stroke="#7BADC7" stroke-width="1.2" stroke-linecap="round" opacity=".6"/></svg>`,
+  medicine:`<svg width="32" height="28" viewBox="0 0 42 36" fill="none"><rect x="3" y="5" width="36" height="24" rx="6" stroke="#E8998A" stroke-width="1.5" fill="#E8998A12"/><path d="M3 18 39 18" stroke="#E8998A" stroke-width="1.4" stroke-linecap="round"/><path d="M18 9 18 14 M15 11.5 21 11.5" stroke="#E8998A" stroke-width="2" stroke-linecap="round"/><rect x="9" y="21" width="6" height="4" rx="2" stroke="#E8998A" stroke-width="1.2" fill="#E8998A20"/><rect x="18" y="21" width="6" height="4" rx="2" stroke="#9EB89A" stroke-width="1.2" fill="#9EB89A20"/><rect x="27" y="21" width="6" height="4" rx="2" stroke="#7BADC7" stroke-width="1.2" fill="#7BADC720"/></svg>`,
+  shoes:`<svg width="34" height="24" viewBox="0 0 48 34" fill="none"><path d="M3 26C3 22 5 18 11 16 L27 12C33 10 41 12 43 18 45 22 43 26 37 26Z" stroke="#9E8570" stroke-width="1.5" fill="#9E857018"/><path d="M3 26 37 26C41 26 43 24 43 22" stroke="#9E8570" stroke-width="1.4" fill="#9E857020"/><path d="M9 22C11 20 15 20 19 22 23 24 27 22 31 20" stroke="#9E8570" stroke-width="1.1" fill="none" stroke-linecap="round" opacity=".5"/><path d="M3 26 5 30 35 30 37 26" stroke="#9E8570" stroke-width="1.2" fill="#9E857012"/></svg>`,
+};
+
+/* ── Day data ─────────────────────────────────────────────────────── */
+const DAYS = [
+  { id:1, date:"7/24 (五)", title:"大濠公園・天神地下街 🌳🏛️", color:"#C8A882", bg:"#FDF3E8", emoji:"🌳",
+    hsvg:"park",
+    items:[
+      {time:"09:55", icon:"✈️", place:"福岡國際機場", note:"抵達！旅程開始", type:"t", il:"plane"},
+      {time:"10:30", icon:"🚇", place:"搭乘福岡市地下鐵機場線", note:"", type:"t", il:"train"},
+      {time:"11:30", icon:"🧳", place:"天神站・飯店寄放行李", note:"", type:"t", il:"luggage"},
+      {time:"12:00", icon:"🍽️", place:"午餐｜&LOCALS 大濠公園", note:"", type:"f", il:"ramen"},
+      {time:"13:30", icon:"🌊", place:"大濠公園", note:"湖畔散步・日式庭園🦢", type:"s", il:"park"},
+      {time:"14:30", icon:"🎨", place:"福岡市美術館", note:"", type:"s", il:"museum"},
+      {time:"15:30", icon:"🥐", place:"AKARI BAKERY 麵包店", note:"", type:"f", il:"bread"},
+      {time:"16:30", icon:"🛍️", place:"天神地下街", note:"無印良品・UQ 購物", type:"sh", il:"shop"},
+      {time:"17:30", icon:"🍞", place:"the full full 明太子麵包", note:"", type:"f", il:"bread"},
+      {time:"19:00", icon:"🍜", place:"晚餐｜一蘭拉麵", note:"個人隔間，博多必吃！", type:"f", il:"ramen"},
+      {time:"20:30", icon:"🛒", place:"唐吉軻德掃貨", note:"", type:"sh", il:"shop"},
+    ]
+  },
+  { id:2, date:"7/25 (六)", title:"由布院・博多屋台 🚂🏞️", color:"#9EB89A", bg:"#EDF5EB", emoji:"🏞️",
+    hsvg:"yufuin",
+    items:[
+      {time:"09:17", icon:"🚂", place:"博多站出發", note:"特急「由布院之森」🌿", type:"t", il:"yufuin"},
+      {time:"11:31", icon:"🚉", place:"由布院站抵達", note:"", type:"t", il:"yufuin"},
+      {time:"11:45", icon:"🍱", place:"由布釜飯「心」金鱗湖本店", note:"⏳ 排隊等候 1.5～2 小時", type:"f", il:"bowl"},
+      {time:"13:30", icon:"🍚", place:"預計入座用餐", note:"釜飯超值得等！", type:"f", il:"bowl"},
+      {time:"14:30", icon:"🏞️", place:"金鱗湖周邊巷弄", note:"湯之坪街道・小店巡禮", type:"s", il:"kinrinko"},
+      {time:"17:56", icon:"🚂", place:"由布院站出發", note:"搭特急返回市區", type:"t", il:"train"},
+      {time:"18:10", icon:"🏬", place:"博多車站・逛逛", note:"", type:"s", il:"shop"},
+      {time:"20:00", icon:"🏮", place:"屋台天通餐車", note:"博多名物！露天小吃攤🌃", type:"f", il:"yatai"},
+      {time:"", icon:"①", place:"えんまんや", note:"", type:"n"},
+      {time:"", icon:"②", place:"屋台 武ちゃん", note:"煎餃・關東煮・手作餃子🥟", type:"n"},
+      {time:"", icon:"③", place:"屋台 峰ちゃん", note:"關東煮🍢", type:"n"},
+      {time:"", icon:"④", place:"小金ちゃん・たけちゃん", note:"炒拉麵・老辣妹推薦⭐", type:"n"},
+    ]
+  },
+  { id:3, date:"7/26 (日)", title:"海洋世界・天神藥院 🐬🛍️", color:"#7BADC7", bg:"#E8F4FA", emoji:"🐬",
+    hsvg:"dolphin",
+    items:[
+      {time:"08:00", icon:"🍗", place:"早餐｜Hakata Asa 雞肉定食", note:"已訂位 ✅", type:"f", il:"bowl"},
+      {time:"09:00", icon:"🚌", place:"搭公車前往", note:"25A → Shikanoshima（9:26發車）", type:"t", il:"train"},
+      {time:"10:05", icon:"🐬", place:"海洋世界 海之中道", note:"含午餐，停留約 4 小時", type:"s", il:"dolphin"},
+      {time:"", icon:"①", place:"海豚・海獅秀", note:"2樓表演池，前排注意水噴！💦", type:"n"},
+      {time:"", icon:"②", place:"沙丁魚風暴", note:"1～2樓大水槽・燈光音樂超壯觀✨", type:"n"},
+      {time:"11:30", icon:"🐠", place:"海洋世界餐廳用餐", note:"隔玻璃看海豚游泳邊用餐", type:"f", il:"aquarium"},
+      {time:"14:30", icon:"🚌", place:"搭公車返回市區", note:"", type:"t", il:"train"},
+      {time:"15:30", icon:"🛍️", place:"天神商圈・地下街・藥院選物店", note:"", type:"sh", il:"shop"},
+      {time:"18:30", icon:"🥩", place:"晚餐｜燒肉垂榕 焼肉ベンジャミン", note:"已訂位 ✅🔥", type:"f", il:"ramen"},
+      {time:"20:30", icon:"📷", place:"天神 Yodobashi Camera", note:"買家電・相機・3C", type:"sh", il:"camera"},
+    ]
+  },
+  { id:4, date:"7/27 (一)", title:"高千穗峽一日遊 🌋⛵", color:"#C4855A", bg:"#FBF0E7", emoji:"🌋",
+    hsvg:"takachiko",
+    items:[
+      {time:"07:45", icon:"🏪", place:"Lawson 福岡東方飯店集合", note:"Kkday 一日遊 🚌", type:"t", il:"luggage"},
+      {time:"11:00", icon:"⛵", place:"高千穗峽", note:"宮崎縣自然秘境・划小船！🌿", type:"s", il:"takachiko"},
+      {time:"12:30", icon:"🍜", place:"午餐｜千穂の家", note:"元祖流水麵，超好玩體驗！🎋", type:"f", il:"udon"},
+      {time:"14:30", icon:"🌋", place:"阿蘇火山・草地千里", note:"火山博物館，壯闊景色🌋", type:"s", il:"volcano"},
+      {time:"18:30", icon:"🚌", place:"博多車站下車", note:"", type:"t", il:"train"},
+      {time:"19:00", icon:"🍲", place:"晚餐｜華味鳥水炊鍋", note:"博多名物・開到11點🍲", type:"f", il:"nabe"},
+      {time:"宵夜", icon:"🏪", place:"便利商店補貨", note:"冰淇淋・零食・飲料🍦", type:"f", il:"bowl"},
+    ]
+  },
+  { id:5, date:"7/28 (二)", title:"櫛田神社・川端通 ⛩️✈️", color:"#B87EA3", bg:"#F6ECF4", emoji:"⛩️",
+    hsvg:"shrine",
+    items:[
+      {time:"早餐", icon:"🍙", place:"おにぎりごりちゃん 天神店", note:"", type:"f", il:"onigiri"},
+      {time:"11:30", icon:"🍜", place:"茶壺烏龍麵 博多あかちょこべ", note:"⚠️ 千萬不要點大阪燒！", type:"f", il:"udon"},
+      {time:"13:00", icon:"⛩️", place:"櫛田神社", note:"停留約 1 小時，必拍景點⛩️", type:"s", il:"shrine"},
+      {time:"", icon:"①", place:"武將刀卡片型御守", note:"可放進錢包隨身攜帶🗡️", type:"n"},
+      {time:"", icon:"②", place:"干支惠方盤", note:"樓門天花板・指針指出好運方位🧭", type:"n"},
+      {time:"", icon:"③", place:"千年銀杏神木", note:"樹齡超千年・能量滿滿🌳", type:"n"},
+      {time:"", icon:"④", place:"巨型裝飾山笠（飾り山）", note:"高達 13 公尺・全年展示🎪", type:"n", il:"dashi"},
+      {time:"13:30", icon:"🏮", place:"川端通商店街", note:"最後伴手禮衝刺！🎁", type:"s", il:"shop"},
+      {time:"14:30", icon:"🚇", place:"博多車站", note:"", type:"t", il:"train"},
+      {time:"15:00", icon:"🚕", place:"搭計程車前往機場", note:"", type:"t", il:"plane"},
+      {time:"17:10", icon:"🛫", place:"福岡機場國際線航廈", note:"報到・最後逛免稅店", type:"t", il:"plane"},
+      {time:"19:10", icon:"✈️", place:"航班起飛返台", note:"旅程結束！下次再見福岡 💕", type:"t", il:"plane"},
+    ]
+  },
+  { id:"info", date:"", title:"🎒 旅遊注意事項", color:"#8BB5A0", bg:"#EBF5F0", emoji:"📋",
+    hsvg:"luggage", isInfo:true,
+    sections:[
+      { title:"🎒 隨身重要物品（放隨身背包）", color:"#7BADC7", svg:"passport",
+        items:[{icon:"🛂",text:"護照（確認效期至少六個月以上）"},{icon:"💴",text:"日幣現金與信用卡"},{icon:"📱",text:"手機、行動電源與充電線"},{icon:"🌂",text:"輕便晴雨兩用傘"},{icon:"🧥",text:"輕薄防曬外套（進出冷氣房隨時拿出來穿）"}]
+      },
+      { title:"🧳 包款配置", color:"#C8A882", svg:"luggage",
+        items:[{icon:"🧳",text:"行李箱：1 個（預留四分之一空位裝伴手禮）"},{icon:"🎒",text:"隨身背包或斜背包：1 個"},{icon:"🛍️",text:"摺疊環保袋：2～3 個（隨時擴充空間）"}]
+      },
+      { title:"👕 衣物配置（五天行程）", color:"#9EB89A", svg:"shoes",
+        items:[{icon:"🎽",text:"吸濕排汗外衣與褲子：4～5 套"},{icon:"🧦",text:"貼身衣物與襪子：5 套"},{icon:"👟",text:"穿習慣的厚底運動鞋：1 雙"},{icon:"🧢",text:"遮陽帽、太陽眼鏡 🕶️"}]
+      },
+      { title:"🔌 常備小物品（放行李箱）", color:"#E8998A", svg:"medicine",
+        items:[{icon:"🔌",text:"多孔 USB 快充頭"},{icon:"💊",text:"腸胃藥、止痛藥、退燒藥、OK 繃"},{icon:"🧊",text:"涼感濕紙巾"}]
+      },
+      { title:"💡 旅途小技巧", color:"#C4855A", svg:null,
+        items:[{icon:"💳",text:"福岡地鐵一日券 ¥640，建議購買省交通費"},{icon:"📶",text:"租 Wi-Fi 分享器或買旅遊 SIM 卡"},{icon:"💴",text:"由布院・屋台建議備妥日幣現金"},{icon:"🎫",text:"海洋世界建議提前在線上購票"},{icon:"🌧️",text:"7月梅雨末期，晴雨傘必備"}]
+      },
+    ]
+  },
+];
+
+const typeMap = {
+  t:{dot:"#C8A882",cardbg:"#FAF5EE",cardb:"#E8D9C4"},
+  f:{dot:"#E8998A",cardbg:"#FEF3F0",cardb:"#F5D5CE"},
+  s:{dot:"#7BADC7",cardbg:"#EEF4F9",cardb:"#C8DDE9"},
+  sh:{dot:"#9EB89A",cardbg:"#EFF5EF",cardb:"#C8DCC5"},
+  n:{dot:"#D4C5B5",cardbg:"transparent",cardb:"transparent"},
+};
+
+let active = 0;
+
+function render() {
+  const tabsEl = document.getElementById('tabs');
+  const contentEl = document.getElementById('content');
+
+  tabsEl.innerHTML = DAYS.map((d,i)=>`
+    <div class="tab ${i===active?'active':''}" style="--tc:${d.color};--tb:${d.bg}" onclick="go(${i})">
+      <span class="tab-emoji">${d.emoji}</span>
+      ${d.isInfo?'備忘':'Day '+d.id}
+    </div>`).join('');
+
+  const cur = DAYS[active];
+
+  if (cur.isInfo) {
+    contentEl.innerHTML = `
+      <div class="day-banner" style="--dc:${cur.color};--db:${cur.bg}">
+        <div>
+          <div class="washi" style="background:${cur.color}30;border:1.5px solid ${cur.color}60">${cur.emoji} 出發前確認清單</div>
+          <div class="day-title">${cur.title}</div>
+        </div>
+        <div>${IL[cur.hsvg]||''}</div>
+      </div>
+      ${cur.sections.map(sec=>`
+        <div class="sec-card" style="--dc:${sec.color};--db:${sec.color}12">
+          <div class="sec-head">
+            ${sec.svg&&IL[sec.svg]?`<div>${IL[sec.svg]}</div>`:''}
+            <div class="sec-title">${sec.title}</div>
+          </div>
+          ${sec.items.map(it=>`
+            <div class="info-row" style="border-color:${sec.color}40">
+              <span class="info-icon">${it.icon}</span><span>${it.text}</span>
+            </div>`).join('')}
+        </div>`).join('')}`;
+    return;
+  }
+
+  let noteCount = 0;
+  const rows = cur.items.map((item,idx)=>{
+    const isLast = idx===cur.items.length-1;
+    const tc = typeMap[item.type]||typeMap.n;
+
+    if (item.type==='n') {
+      noteCount++;
+      const illHtml = item.il&&IL[item.il] ? `<div class="note-illust">${IL[item.il]}</div>` : '';
+      return `
+        <div class="tl-row is-note">
+          <div class="note-inner" style="flex:1">
+            <div class="note-num">${noteCount}</div>
+            <div class="note-body" style="flex:1">
+              <span class="note-place">${item.place}</span>
+              ${item.note?`<span class="note-sub">${item.note}</span>`:''}
+            </div>
+            ${illHtml}
+          </div>
+        </div>`;
+    }
+    noteCount = 0;
+
+    const illHtml = item.il&&IL[item.il] ? `<div class="tl-illust">${IL[item.il]}</div>` : '';
+    return `
+      <div class="tl-row" style="--dc:${tc.dot}">
+        ${!isLast?`<div class="tl-vline"></div>`:''}
+        <div class="tl-col">
+          <div class="tl-dot" style="border-color:${tc.dot}88;font-size:14px">${item.icon}</div>
+          ${item.time?`<div class="tl-time">${item.time}</div>`:''}
+        </div>
+        <div class="tl-card" style="--cardbg:${tc.cardbg};--cardb:${tc.cardb}">
+          <div class="tl-row-inner">
+            <div class="tl-texts">
+              <div class="tl-name">${item.place}</div>
+              ${item.note?`<div class="tl-note">${item.note}</div>`:''}
+            </div>
+            ${illHtml}
+          </div>
+        </div>
+      </div>`;
+  }).join('');
+
+  contentEl.innerHTML = `
+    <div class="day-banner" style="--dc:${cur.color};--db:${cur.bg}">
+      <div>
+        <div class="washi" style="background:${cur.color}30;border:1.5px solid ${cur.color}60">DAY ${cur.id} · ${cur.date}</div>
+        <div class="day-title">${cur.title}</div>
+      </div>
+      <div>${IL[cur.hsvg]||''}</div>
+    </div>
+    <div class="tl-wrap">${rows}</div>`;
+}
+
+function go(i){active=i;render();}
+render();
+</script>
+</body>
+</html>
